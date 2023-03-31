@@ -6,6 +6,8 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const swaggerUI = require('swagger-ui-express')
+
 
 // declare constants variables
 
@@ -28,6 +30,10 @@ app.use(express.urlencoded({ extended: false }))
 const userRoute = require('./routes/User.route')
 
 // routes
+
+// configure swagger docs
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(require('./swagger-js-docs.json')))
 
 app.use('/users', userRoute)
 

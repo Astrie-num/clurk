@@ -4,107 +4,128 @@
         "title": "Clurk chat app",
         "version": "1.0.0",
         "description": " apis for CRUD operations on users with authentication and authorization all for the clurk chat app",
-        "contact":{
-            "github":"https://github.com/Astrie-num/clurk"
+        "contact": {
+            "github": "https://github.com/Astrie-num/clurk"
         }
     },
-    "paths":{
-        "/users":{
-            "get":{
-                "summary":"Get all users",
-                "description":"get all users",
-                "responses":{
-                    "200":{
-                        "description":"a list of users"
+    "paths": {
+        "/api/v1/users": {
+            "get": {
+                "summary": "Get all users",
+                "description": "get all users",
+                "responses": {
+                    "200": {
+                        "description": "a list of users"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{id}": {
+            "get": {
+                "summary": "get a specific user",
+                "description": "get a specific user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of a single user",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "the requested user"
                     }
                 }
             },
-            "post":{
-                "summary":"Create a new user",
-                "description":"Create a new user",
-                "requestBody":{
-                    "required":true,
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                               
-                            }
+            "patch": {
+                "summary": "update a specific user",
+                "description": "update a specific user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of a single user to update",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "delete a specific user",
+                "description": "delete a specific user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "the id of a user to delete",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/signup": {
+            "post": {
+                "summary": "Create a new user",
+                "description": "Create a new user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
                         }
                     }
                 },
-                "responses":{
-                    "201":{
-                        "description":"user created successfully",
-                        "content":{
-                            "application/json":{
-                                "schema":{
-                                  
-                                }
+                "responses": {
+                    "201": {
+                        "description": "user created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
                             }
                         }
                     }
                 }
             }
         },
-        "/users/{id}":{
-            "get":{
-                "summary":"get a specific user",
-                "description":"get a specific user",
-                "parameters":[
-                    {
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"The id of a single user",
-                        "schema":{
-                            "type":"string"
+        "/api/v1/auth/login":{
+            "post":{
+                "summary":"login a user",
+                "description":"login a user with jwt",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
                         }
                     }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"the requested user"
-                    }
-                }
-            },
-            "patch":{
-                "summary":"update a specific user",
-                "description":"update a specific user",
-                "parameters":[
-                    {
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"The id of a single user to update",
-                        "schema":{
-                            "type":"string"
+                },
+                "responses": {
+                    "201": {
+                        "description": "user logged in successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
                         }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"user updated successfully"
-                    }
-                }
-
-            },
-            "delete":{
-                "summary":"delete a specific user",
-                "description":"delete a specific user",
-                "parameters":[
-                    {
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"the id of a user to delete",
-                        "schema":{
-                            "type":"string"
-                        }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"user deleted successfully"
                     }
                 }
             }

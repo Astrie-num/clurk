@@ -25,9 +25,10 @@ app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
-
 // require external routes
 const userRoute = require('./routes/User.route')
+const indexRoute = require('./routes/Index.route')
+const { verifyToken } = require('./middlewares/jwt')
 
 // routes
 
@@ -35,7 +36,12 @@ const userRoute = require('./routes/User.route')
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(require('./swagger-js-docs.json')))
 
-app.use('/users', userRoute)
+app.use('/api/v1/users', userRoute)
+app.use('/api/v1/auth', indexRoute)
+
+app.get('/protected', verifyToken, (req, res) => {
+    res.json({user:req.user})
+})
 
 app.all('*', (req, res) => {
     res.status(404).json({message:"page not found"})

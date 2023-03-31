@@ -1,8 +1,11 @@
 const User = require("../models/User.model");
-const validatedSchema = require('../configs/joi')
+const validatedSchema = require('../configs/joi');
+const { log } = require("console");
+const bcrypt = require('bcrypt');
+const { createToken } = require("../middlewares/jwt");
 
 /**
- * GET /users
+ * GET /api/v1/users
  * @returns Array of users
  */
 
@@ -24,7 +27,7 @@ const getAllUsers = async (req, res) => {
 }
 
 /**
- * GET /users/:id
+ * GET /api/v1/users/:id
  * @param {String} id
  * @returns User object
  */
@@ -48,7 +51,7 @@ const getUser = async (req, res) => {
 
 
 /**
- * POST /users
+ * POST /api/v1/users
  * @returns User object
  */
 
@@ -78,6 +81,13 @@ const addUser = async (req, res) => {
 
         await newUser.save()
 
+        let token = createToken(newUser._id, newUser.email, newUser.birthDate, newUser.firstName, newUser.lastName)
+        res.cookie('clurk_access_token', token, {
+            maxAge: 60 * 60 * 60 * 24 * 24 * 24 * 7,
+            secure: true,
+            httpOnly: true
+        })
+
         res.status(201).json({
             status: 'success', message: 'new user added successfully', user: {
                 email: newUser.email,
@@ -97,7 +107,7 @@ const addUser = async (req, res) => {
 }
 
 /**
- * PATCH /users/:id
+ * PATCH /api/v1/users/:id
  * @param {String} id
  * @returns Success
  */
@@ -123,7 +133,7 @@ const updateUser = async (req, res) => {
 }
 
 /**
- * DELETE /users/:id
+ * DELETE /api/v1/users/:id
  * @param {String} id
  * @returns Success
  */
@@ -149,11 +159,50 @@ const deleteUser = async (req, res) => {
     }
 }
 
+/**
+ * POST /api/v1/auth/login
+ * @returns Success
+ */
+
+const loginUser = async (req, res) => {
+
+    try {
+
+        let { email, password } = req.body
+
+        let checkIfUserExists = await User.findOne({ email })
+
+        if (!checkIfUserExists) {
+            return res.status(404).json({status:"not found", message:"user was not found"})
+        }
+
+        // compare password
+
+        let comparedPwd = await bcrypt.compare(password, checkIfUserExists.password)
+        if (!comparedPwd) {
+            return res.status(401).json({status:'error', message:"password is invalid"})
+        }
+
+        let token = createToken(checkIfUserExists.id, checkIfUserExists.email, checkIfUserExists.birthDate, checkIfUserExists.firstName, checkIfUserExists.lastName)
+        res.cookie('clurk_access_token', token, {
+            maxAge: 60 * 60 * 60 * 24 * 24 * 24 * 7,
+            secure:true,
+            httpOnly:true
+        })
+        return res.status(200).json({status:"ok", message:"user logged in successfully", isLoggedIn: true, user:checkIfUserExists})
+    } catch (err) {
+        console.log('error logging in user:', err.message, err.code);
+        return res.status(500).json({status:"error", message: "error logging in user"})
+    }
+    
+}
+
 
 module.exports = {
     getAllUsers,
     getUser,
     updateUser,
     deleteUser,
-    addUser
+    addUser,
+    loginUser
 }

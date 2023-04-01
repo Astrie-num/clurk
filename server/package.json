@@ -1,17 +1,20 @@
 {
   "name": "clurk-server",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "deploy":"firebase deploy --only functions"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "firebase": "^9.19.1",
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.1",
     "joi": "^17.9.1",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
@@ -20,5 +23,9 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3"
-  }
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "app.js"
 }

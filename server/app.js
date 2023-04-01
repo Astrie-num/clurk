@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const swaggerUI = require('swagger-ui-express')
-
+const functions = require('firebase-functions')
 
 // declare constants variables
 
@@ -52,3 +52,6 @@ app.all('*', (req, res) => {
 const server = app.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`);
 })
+
+
+exports.api = functions.https.onRequest(app)

@@ -35,6 +35,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['male', 'female', 'custom'],
         default: 'custom'
+    },
+    FriendsNo: {
+        type: Number,
+        default:0
+    },
+    friends: {
+        type:[Object, Object]
     }
 },
     {

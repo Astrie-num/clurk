@@ -29,6 +29,7 @@ app.use(express.urlencoded({ extended: false }))
 const userRoute = require('./routes/User.route')
 const indexRoute = require('./routes/Index.route')
 const { verifyToken } = require('./middlewares/jwt')
+const friendsRoute = require('./routes/Friend.route')
 
 // routes
 
@@ -38,6 +39,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(require('./swagger-js-docs
 
 app.use('/api/v1/users', userRoute)
 app.use('/api/v1/auth', indexRoute)
+app.use('/api/v1/user',friendsRoute )
 
 app.get('/protected', verifyToken, (req, res) => {
     res.json({user:req.user})

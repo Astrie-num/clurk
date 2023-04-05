@@ -129,6 +129,54 @@
                     }
                 }
             }
+        },
+        "/api/v1/message":{
+            "post":{
+                "summary":"get all messages",
+                "description":"get all messages by post method. Send both sender and receiver in the request body",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "messages found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/messages/add":{
+            "post":{
+                "summary":"save a new message",
+                "description":"save a new message between users" ,
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "message saved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

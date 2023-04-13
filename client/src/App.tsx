@@ -2,11 +2,13 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Chats from "./pages/Chats";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/chats/:userId" element={<Chats />} />
         <Route path="/profile/:userId" element={<Profile />} />

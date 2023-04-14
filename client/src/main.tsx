@@ -19,8 +19,13 @@ import {
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./state/index";
+import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
-const persistConfig = { key: "root", storage, version: 1 };
+const persistConfig = {
+  key: "root",
+  storage: createWebStorage("sessionStorage"),
+  version: 1,
+};
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
 const store = configureStore({

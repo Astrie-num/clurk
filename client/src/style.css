@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lexend+Deca&family=Poppins&family=Rubik&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app, html, body, #root{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+.login-btn {
+    border: 1px solid #fff;
+}
+
+.whitecircle {
+    filter: blur(500px);
+}
+
+.intro{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.intro-center{
+    grid-column: span 2;
+}
+
+.chats{
+    transform: translate(-50%,-50%);
+}

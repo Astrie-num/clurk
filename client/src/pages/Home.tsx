@@ -11,7 +11,7 @@ const Home = () => {
       <Intro />
 
       <div
-        className={`chats ${styles.flexCenter} chats w-[100%] absolute top-[143%] left-[50%] lg:top-[125%] md:top-[130%] sm:hidden`}
+        className={`chats ${styles.flexCenter} chats w-[100%] absolute top-[145%] left-[50%] lg:top-[125%] md:top-[130%] sm:hidden`}
       >
         <img
           src={chats}

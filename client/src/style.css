@@ -11,6 +11,7 @@
     width: 100%;
     height: 100%;
     overflow: scroll;
+    transition: 0.4s ease-in-out;
 }
 ::-webkit-scrollbar{
     display: none;
@@ -21,7 +22,7 @@
 }
 
 .whitecircle {
-    filter: blur(500px);
+    filter: blur(400px);
 }
 
 .intro{
@@ -33,6 +34,20 @@
     grid-column: span 2;
 }
 
-.chats{
+.chats, .add-story{
     transform: translate(-50%,-50%);
+}
+
+.mode{
+    backdrop-filter: blur(500px);
+}
+
+.sidebar, .chatsbar{
+    transition: 0.3s ease-out;
+}
+.sidebar-prop{
+    transition: 0.4s ease-in-out;
+}
+.mode{
+    text-shadow:  0 0 0.2em currentColor;
 }

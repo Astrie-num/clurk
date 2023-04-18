@@ -8,6 +8,7 @@ import { Close, Menu } from "@mui/icons-material";
 
 interface NavbarProps {
   isMobileScreen: boolean;
+  navigator: string
 }
 
 const Navbar = () => {
@@ -15,6 +16,7 @@ const Navbar = () => {
 
   const [isMobileScreen, setIsMobileScreen] =
     useState<NavbarProps["isMobileScreen"]>(false);
+  const [navigator, setNavigator] = useState<NavbarProps['navigator']>("")
 
   const navigate = useNavigate();
 
@@ -33,12 +35,13 @@ const Navbar = () => {
       <div className={`${theme.font1} font-lexend mdsm:hidden`}>
         {navigations.map((navigator, index) => (
           <button
-            key={index}
+            key={`${navigator.id}-${index}`}
             className={`${
               index === navigations.length - 1 ? "mr-0" : "mr-[4rem]"
             }`}
+            onClick={() => navigate(`${navigator.navigation}`)}
           >
-            {navigator}
+            {navigator.title}
           </button>
         ))}
       </div>
@@ -61,7 +64,7 @@ const Navbar = () => {
             />
           </IconButton>
           {navigations.map((navigator, index) => (
-            <button key={index}>{navigator}</button>
+            <button key={`${navigator.id}-${index}`} onClick={() => navigate(`${navigator.navigation}`)}>{navigator.title}</button>
           ))}
 
           <div className={`${styles.flexColCenter} gap-[1rem]`}>

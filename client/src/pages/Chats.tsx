@@ -175,7 +175,7 @@ const Chats = () => {
 
           <div
             className={`basis-[60%] p-[1rem] h-[100%] ${
-              !isHideChatsBarOnMobile ? "basis-100%" : "basis-0 hidden"
+              (isHideChatsBarOnMobile && isMobileScreen) ? "basis-100%" : "basis-0 hidden"
             }`}
           >
             <ChatsArea />

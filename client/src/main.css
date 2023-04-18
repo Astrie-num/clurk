@@ -1041,8 +1041,20 @@ video {
     flex-basis: 0px;
   }
 
+  .sm\:basis-\[\] {
+    flex-basis: ;
+  }
+
+  .sm\:basis-\[80\] {
+    flex-basis: 80;
+  }
+
   .sm\:basis-\[80\%\] {
     flex-basis: 80%;
+  }
+
+  .sm\:basis-\[100\%\] {
+    flex-basis: 100%;
   }
 
   .sm\:overflow-scroll {

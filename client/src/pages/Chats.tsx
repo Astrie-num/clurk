@@ -122,9 +122,7 @@ const Chats = () => {
           <div
             className={`chatsbar ${
               isHideChatsBar ? "basis-0" : "basis-[20%]"
-            } ${
-              isHideChatsBarOnMobile ? "basis-100%" : "basis-0"
-            } p-[1rem] h-[100%] relative`}
+            } p-[1rem] h-[100%] relative sm:hidden`}
           >
             {!isHideChatsBar && <ChatsBar />}
 
@@ -147,36 +145,10 @@ const Chats = () => {
                 )}
               </IconButton>
             </div>
-
-            <div
-              className={`hidden absolute bottom-[0.2em] right-[0.4em] sm:flex`}
-            >
-              <IconButton
-                onClick={() => setIsHideChatsBarOnMobile((prev) => !prev)}
-              >
-                {isHideChatsBarOnMobile ? (
-                  <ArrowCircleRightOutlined
-                    sx={{
-                      color: `${theme.mode === "light" ? "#000" : "#dcdcdc"}`,
-                    }}
-                    titleAccess="Unhide Chats Bar"
-                  />
-                ) : (
-                  <ArrowCircleLeftOutlined
-                    sx={{
-                      color: `${theme.mode === "light" ? "#000" : "#dcdcdc"}`,
-                    }}
-                    titleAccess="Hide Chats Bar"
-                  />
-                )}
-              </IconButton>
-            </div>
           </div>
 
           <div
-            className={`basis-[60%] p-[1rem] h-[100%] ${
-              (!isHideChatsBarOnMobile && isMobileScreen) ? "basis-100%" : "basis-0 hidden"
-            }`}
+            className={`basis-[60%] p-[1rem] h-[100%] sm:basis-[100%]`}
           >
             <ChatsArea />
           </div>

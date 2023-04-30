@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "test": "nodemon app.js",
-    "start": "node app.js",
+    "start": "node init && node app.js",
     "deploy": "firebase deploy --only functions"
   },
   "dependencies": {

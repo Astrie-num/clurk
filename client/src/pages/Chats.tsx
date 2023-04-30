@@ -17,7 +17,6 @@ import {
   ArrowCircleRightOutlined,
   Close,
 } from "@mui/icons-material";
-import { UseMediaQueryOptions } from "@mui/material";
 
 interface ChatsProps {
   isToggleMenu: boolean;
@@ -75,10 +74,10 @@ const Chats = () => {
           )}
         </div>
         <div
-          className={`${styles.flexBetween} w-[100%] px-[1%] py-[1rem] sm:overflow-scroll`}
+          className={`${styles.flexBetween} w-[100%] px-[1%] py-[1rem]`}
         >
           <div
-            className={`${styles.flexColCenter} gap-[1rem] w-[78%] mdsm:w-[100%] overflow-scroll`}
+            className={`${styles.flexColCenter} gap-[1rem] w-[78%] mdsm:w-[100%]`}
           >
             <TopBar />
           </div>
